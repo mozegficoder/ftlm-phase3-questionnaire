@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FTLM Phase 3 Questionnaire</title>
+<meta name="description" content="Phase 3 Business Process Review & Current-State Assessment questionnaire for Fetakgomo-Tubatse Local Municipality.">
+<style>
+:root{
+  --navy:#0E2A47; --navy2:#163A5C; --gold:#E8A33D; --teal:#0E9AA7; --teald:#0B7F89;
+  --green:#2E8B6F; --purple:#6A4C93; --ink:#12263A; --grey:#5B6B7A; --mist:#F4F7FA;
+  --line:#DBE4EC; --white:#ffffff; --card:#ffffff; --shadow:0 2px 10px rgba(18,38,58,.08);
+}
+:root:not([data-theme="light"]){ }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E7EEF5; --grey:#9FB2C2; --mist:#0C1E2E; --card:#12293D; --line:#24435C;
+    --white:#12293D; --shadow:0 2px 12px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E7EEF5; --grey:#9FB2C2; --mist:#0C1E2E; --card:#12293D; --line:#24435C;
+  --white:#12293D; --shadow:0 2px 12px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);background:var(--mist);
+  background-image:radial-gradient(circle at 1px 1px, rgba(46,116,181,.08) 1px, transparent 0);
+  background-size:26px 26px;line-height:1.5;}
+a{color:var(--teald)}
+.bar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;align-items:center;
+  gap:14px;padding:12px 20px;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.bar .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--teal),var(--navy2));
+  display:grid;place-items:center;font-weight:800;color:#fff;font-size:15px;flex:0 0 auto;border:1px solid rgba(255,255,255,.15)}
+.bar h1{font-size:15px;margin:0;font-weight:700;letter-spacing:.2px}
+.bar small{display:block;font-weight:500;color:#A9C2D6;font-size:11.5px;letter-spacing:.3px}
+.bar .sp{flex:1}
+.btn{background:var(--gold);color:#3a2708;border:none;border-radius:8px;padding:9px 14px;font-weight:700;
+  font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.hero{padding:40px 0 10px}
+.kicker{color:var(--teald);font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase}
+.hero h2{font-size:30px;margin:8px 0 6px;line-height:1.15}
+.hero h2 .g{color:var(--gold)}
+.hero p{color:var(--grey);font-size:15.5px;max-width:680px}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:10px;
+  padding:14px 16px;margin:18px 0;box-shadow:var(--shadow);font-size:14px}
+.note b{color:var(--navy2)}
+.chips{position:sticky;top:58px;z-index:40;background:var(--mist);padding:12px 0;display:flex;gap:8px;
+  overflow-x:auto;scrollbar-width:thin;border-bottom:1px solid var(--line)}
+.chip{white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 13px;
+  font-size:12.5px;font-weight:600;color:var(--navy2);text-decoration:none;flex:0 0 auto}
+.chip:hover{border-color:var(--teal);color:var(--teald)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  padding:0;margin:22px 0;overflow:hidden}
+.card>.head{display:flex;align-items:center;gap:14px;padding:16px 20px;color:#fff;background:var(--navy)}
+.card>.head .num{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--navy);display:grid;
+  place-items:center;font-weight:800;flex:0 0 auto}
+.card>.head h3{margin:0;font-size:17px}
+.card>.head .obj{font-size:12px;color:#BcD2E4;color:#B7CCDE;margin-top:2px;font-weight:500}
+.body{padding:8px 20px 18px}
+.q{padding:14px 0;border-bottom:1px dashed var(--line)}
+.q:last-child{border-bottom:none}
+.q .lab{font-weight:600;font-size:14.5px;margin-bottom:8px;display:block}
+.q .lab .n{color:var(--teald);font-weight:800;margin-right:6px}
+.q textarea,.q input[type=text]{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 11px;
+  font:inherit;font-size:14px;background:var(--mist);color:var(--ink);resize:vertical}
+.q textarea{min-height:58px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.opts label{display:inline-flex;align-items:center;gap:6px;background:var(--mist);border:1px solid var(--line);
+  border-radius:8px;padding:7px 11px;font-size:13px;cursor:pointer}
+.mat{display:flex;gap:6px;flex-wrap:wrap}
+.mat label{flex:1;min-width:92px;text-align:center;background:var(--mist);border:1px solid var(--line);
+  border-radius:8px;padding:8px 6px;font-size:12px;cursor:pointer;line-height:1.2}
+.mat input{display:block;margin:0 auto 4px}
+.mat b{display:block;color:var(--navy2);font-size:13px}
+.ev{font-size:12px;color:var(--grey);margin-top:7px}
+.ev input{margin-top:5px}
+footer{color:var(--grey);font-size:12.5px;padding:30px 0 50px;text-align:center}
+.theme{cursor:pointer}
+@media print{
+  .bar,.chips,.theme{display:none!important}
+  body{background:#fff}
+  .card{box-shadow:none;break-inside:avoid;border-color:#ccc}
+  .card>.head{background:#0E2A47!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .hero{padding-top:10px}
+}
+@media(max-width:620px){ .hero h2{font-size:24px} .card>.head h3{font-size:15px} }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="logo">NX</div>
+  <div>
+    <h1>FTLM Phase 3 — Business Process Questionnaire</h1>
+    <small>Nextflex × Fetakgomo-Tubatse Local Municipality · Current-State Assessment</small>
+  </div>
+  <div class="sp"></div>
+  <span class="theme btn ghost" onclick="toggleTheme()" title="Toggle light/dark">◐ Theme</span>
+  <a class="btn" href="javascript:window.print()">⤓ Print / Save PDF</a>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Phase 3 · Current-State Assessment</div>
+    <h2>Tell us how your work is done <span class="g">today</span>.</h2>
+    <p>This short questionnaire helps us document the current ("as-is") state of your processes for Phase 3 of the study. There are no wrong answers — we simply want to understand how things work now, including where they are slow or still done on paper.</p>
+    <div class="note">
+      <b>How to complete:</b> answer for your own department or area of responsibility. Where you don't know, write "not sure" — that is useful too. Where a document exists, note it under "evidence / reference". You can fill this in on screen and use <b>Print / Save PDF</b>, or print it blank and complete by hand.
+    </div>
+  </div>
+
+  <div class="chips" id="nav"></div>
+
+  <!-- Respondent -->
+  <div class="card" id="s0">
+    <div class="head"><div class="num">i</div><div><h3>Respondent details</h3><div class="obj">So we can follow up and attribute evidence correctly.</div></div></div>
+    <div class="body">
+      <div class="q"><label class="lab">Full name</label><input type="text"></div>
+      <div class="q"><label class="lab">Position / job title</label><input type="text"></div>
+      <div class="q"><label class="lab">Department / unit</label><input type="text"></div>
+      <div class="q"><label class="lab">Processes you own or run</label><textarea></textarea></div>
+      <div class="q"><label class="lab">Email / contact</label><input type="text"></div>
+      <div class="q"><label class="lab">Date completed</label><input type="text"></div>
+    </div>
+  </div>
+
+  <div id="sections"></div>
+
+  <footer>
+    FTLM Digital Transformation Feasibility Study · Assessment Questionnaires · v1.0 (Nov 2026)<br>
+    Information provided is used only for this study and handled in line with POPIA. Prepared by Moses Masunda — Nextflex.
+  </footer>
+</div>
+
+<script>
+const SECTIONS = [
+ {n:1,t:"Your processes",c:"navy",obj:"Identify the processes you own or run.",
+  q:[
+   {type:"ta",q:"List the main processes your department/section performs (e.g. registration, billing, procurement, approvals, complaints)."},
+   {type:"ta",q:"Which of these are the most important or highest-volume?"},
+   {type:"tx",q:"Which ONE process will you describe in detail below?"}
+ ]},
+ {n:2,t:"How it works today",c:"teal",obj:"Document the current ('as-is') steps, roles and systems.",
+  q:[
+   {type:"ta",q:"Describe this process step by step, from start to finish."},
+   {type:"ta",q:"Who is involved at each step, and where does it hand over to someone else?"},
+   {type:"ta",q:"Which systems or tools are used — and which steps use none?"},
+   {type:"tx",q:"Roughly how long does the whole process take, start to finish?"}
+ ]},
+ {n:3,t:"Documentation & standardisation",c:"green",obj:"Is the process written down, owned and consistent?",
+  q:[
+   {type:"ypn",q:"Is this process documented (a map, SOP or work instruction)?"},
+   {type:"ypn",q:"Does it have a clear owner responsible for it?"},
+   {type:"opt",q:"Is it done the same way by everyone, or does it vary?",o:["Same way","Varies a little","Varies a lot","Not sure"]},
+   {type:"ev",q:"Evidence / reference (document or system name)"}
+ ]},
+ {n:4,t:"Manual & paper-based work",c:"teald",obj:"Find the manual steps and digitisation opportunities.",
+  q:[
+   {type:"ta",q:"Which steps are still done on paper or by hand?"},
+   {type:"ypn",q:"Is the same information written or typed more than once?"},
+   {type:"opt",q:"How are records kept?",o:["Electronic","Paper files","Both","Not sure"]},
+   {type:"ta",q:"Which part would benefit most from going digital?"}
+ ]},
+ {n:5,t:"Approvals, delays & bottlenecks",c:"purple",obj:"Understand where things slow down or get stuck.",
+  q:[
+   {type:"ta",q:"How many approvals / sign-offs does this process need, and by whom?"},
+   {type:"ta",q:"Where do delays usually happen? (waiting for approval, documents, another department...)"},
+   {type:"ta",q:"Where does work get sent back, redone, or lost?"},
+   {type:"mat",q:"How mature is this process overall? (your honest view)"}
+ ]},
+ {n:6,t:"Service delivery & citizen experience",c:"gold",obj:"How residents experience this service today.",
+  q:[
+   {type:"ypn",q:"Does this process directly serve residents or businesses?"},
+   {type:"ta",q:"How do citizens access it today (walk-in, phone, email, online)?"},
+   {type:"ta",q:"Where do citizens experience delays, repeat visits or frustration?"},
+   {type:"ypn",q:"Are there defined service standards or turnaround times?"}
+ ]},
+ {n:7,t:"Your view & ideas",c:"navy",obj:"Your improvement ideas matter most.",
+  q:[
+   {type:"ta",q:"If you could fix ONE thing about this process, what would it be?"},
+   {type:"ta",q:"Any other comments, concerns or ideas for the study?"},
+   {type:"ev",q:"Anything you can provide as evidence (reports, forms, screenshots)"}
+ ]}
+];
+const MAT=[["1","Initial — ad-hoc / manual"],["2","Managed — some consistency"],["3","Defined — documented & standard"],["4","Measured — tracked with data"],["5","Optimising — improving / automated"]];
+function qHTML(sec,qi,item){
+ const id=sec.n+"_"+qi;
+ let inner="";
+ if(item.type==="ta") inner=`<textarea></textarea>`;
+ else if(item.type==="tx") inner=`<input type="text">`;
+ else if(item.type==="ypn") inner=`<div class="opts">${["Yes","Partial","No","Not sure"].map(o=>`<label><input type="radio" name="${id}">${o}</label>`).join("")}</div>`;
+ else if(item.type==="opt") inner=`<div class="opts">${item.o.map(o=>`<label><input type="radio" name="${id}">${o}</label>`).join("")}</div>`;
+ else if(item.type==="mat") inner=`<div class="mat">${MAT.map(m=>`<label><input type="radio" name="${id}"><b>${m[0]}</b>${m[1]}</label>`).join("")}</div>`;
+ else if(item.type==="ev") return `<div class="q"><label class="lab ev">${item.q}</label><input type="text"></div>`;
+ return `<div class="q"><label class="lab"><span class="n">Q${sec.n}.${qi+1}</span>${item.q}</label>${inner}</div>`;
+}
+const nav=document.getElementById("nav"), cont=document.getElementById("sections");
+nav.insertAdjacentHTML("beforeend",`<a class="chip" href="#s0">Respondent</a>`);
+SECTIONS.forEach(sec=>{
+ nav.insertAdjacentHTML("beforeend",`<a class="chip" href="#s${sec.n}">${sec.n}. ${sec.t.split(" & ")[0]}</a>`);
+ const color=`var(--${sec.c})`;
+ cont.insertAdjacentHTML("beforeend",
+  `<div class="card" id="s${sec.n}">
+    <div class="head" style="background:${color}"><div class="num" style="color:${color}">${sec.n}</div>
+     <div><h3>${sec.t}</h3><div class="obj">Objective: ${sec.obj}</div></div></div>
+    <div class="body">${sec.q.map((it,i)=>qHTML(sec,i,it)).join("")}</div>
+   </div>`);
+});
+function toggleTheme(){const r=document.documentElement;const cur=r.getAttribute("data-theme");
+ const next=cur==="dark"?"light":(cur==="light"?"dark":(matchMedia("(prefers-color-scheme: dark)").matches?"light":"dark"));
+ r.setAttribute("data-theme",next); try{localStorage.setItem("ftlm_theme",next)}catch(e){} }
+try{const t=localStorage.getItem("ftlm_theme"); if(t) document.documentElement.setAttribute("data-theme",t);}catch(e){}
+</script>
+</body>
+</html>
