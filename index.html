@@ -38,6 +38,7 @@ a{color:var(--teald)}
 .btn{background:var(--gold);color:#3a2708;border:none;border-radius:8px;padding:9px 14px;font-weight:700;
   font-size:13px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
 .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 .wrap{max-width:900px;margin:0 auto;padding:0 20px}
 .hero{padding:40px 0 10px}
 .kicker{color:var(--teald);font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase}
@@ -58,7 +59,7 @@ a{color:var(--teald)}
 .card>.head .num{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--navy);display:grid;
   place-items:center;font-weight:800;flex:0 0 auto}
 .card>.head h3{margin:0;font-size:17px}
-.card>.head .obj{font-size:12px;color:#BcD2E4;color:#B7CCDE;margin-top:2px;font-weight:500}
+.card>.head .obj{font-size:12px;color:#B7CCDE;margin-top:2px;font-weight:500}
 .body{padding:8px 20px 18px}
 .q{padding:14px 0;border-bottom:1px dashed var(--line)}
 .q:last-child{border-bottom:none}
@@ -77,15 +78,10 @@ a{color:var(--teald)}
 .mat b{display:block;color:var(--navy2);font-size:13px}
 .ev{font-size:12px;color:var(--grey);margin-top:7px}
 .ev input{margin-top:5px}
+.reqnote{font-size:12.5px;color:var(--grey);margin:4px 0 0}
+.status{margin-top:14px;font-size:14px;font-weight:600;min-height:20px}
 footer{color:var(--grey);font-size:12.5px;padding:30px 0 50px;text-align:center}
 .theme{cursor:pointer}
-@media print{
-  .bar,.chips,.theme{display:none!important}
-  body{background:#fff}
-  .card{box-shadow:none;break-inside:avoid;border-color:#ccc}
-  .card>.head{background:#0E2A47!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .hero{padding-top:10px}
-}
 @media(max-width:620px){ .hero h2{font-size:24px} .card>.head h3{font-size:15px} }
 </style>
 </head>
@@ -98,7 +94,6 @@ footer{color:var(--grey);font-size:12.5px;padding:30px 0 50px;text-align:center}
   </div>
   <div class="sp"></div>
   <span class="theme btn ghost" onclick="toggleTheme()" title="Toggle light/dark">◐ Theme</span>
-  <a class="btn" href="javascript:window.print()">⤓ Print / Save PDF</a>
 </div>
 
 <div class="wrap">
@@ -107,7 +102,7 @@ footer{color:var(--grey);font-size:12.5px;padding:30px 0 50px;text-align:center}
     <h2>Tell us how your work is done <span class="g">today</span>.</h2>
     <p>This short questionnaire helps us document the current ("as-is") state of your processes for Phase 3 of the study. There are no wrong answers — we simply want to understand how things work now, including where they are slow or still done on paper.</p>
     <div class="note">
-      <b>How to complete:</b> answer for your own department or area of responsibility. Where you don't know, write "not sure" — that is useful too. Where a document exists, note it under "evidence / reference". You can fill this in on screen and use <b>Print / Save PDF</b>, or print it blank and complete by hand.
+      <b>How to complete:</b> answer for your own department or area of responsibility. Where you don't know, write "not sure" — that is useful too. Where a document exists, note it under "evidence / reference". When you are finished, press <b>Send my responses</b> at the bottom. Your answers go straight to the study team and <b>cannot be changed once sent</b>.
     </div>
   </div>
 
@@ -117,16 +112,27 @@ footer{color:var(--grey);font-size:12.5px;padding:30px 0 50px;text-align:center}
   <div class="card" id="s0">
     <div class="head"><div class="num">i</div><div><h3>Respondent details</h3><div class="obj">So we can follow up and attribute evidence correctly.</div></div></div>
     <div class="body">
-      <div class="q"><label class="lab">Full name</label><input type="text"></div>
-      <div class="q"><label class="lab">Position / job title</label><input type="text"></div>
-      <div class="q"><label class="lab">Department / unit</label><input type="text"></div>
-      <div class="q"><label class="lab">Processes you own or run</label><textarea></textarea></div>
-      <div class="q"><label class="lab">Email / contact</label><input type="text"></div>
-      <div class="q"><label class="lab">Date completed</label><input type="text"></div>
+      <div class="q"><label class="lab">Full name <span style="color:var(--gold)">*</span></label><input type="text" name="name"></div>
+      <div class="q"><label class="lab">Position / job title</label><input type="text" name="position"></div>
+      <div class="q"><label class="lab">Department / unit <span style="color:var(--gold)">*</span></label><input type="text" name="department"></div>
+      <div class="q"><label class="lab">Processes you own or run</label><textarea name="processes"></textarea></div>
+      <div class="q"><label class="lab">Email / contact</label><input type="text" name="email"></div>
+      <div class="q"><label class="lab">Date completed</label><input type="text" name="date"></div>
     </div>
   </div>
 
   <div id="sections"></div>
+
+  <!-- Submit -->
+  <div class="card" id="submitcard">
+    <div class="head" style="background:var(--green)"><div class="num" style="color:var(--green)">✓</div>
+      <div><h3>Send your responses</h3><div class="obj">Confidential — sent directly to the study team. Locked once sent.</div></div></div>
+    <div class="body">
+      <p style="font-size:14px;color:var(--grey);margin:6px 0 14px">Please complete the sections above, then send. Your responses are used only for this study and handled in line with POPIA. Fields marked <span style="color:var(--gold)">*</span> are required.</p>
+      <button class="btn" id="submitBtn" style="font-size:15px;padding:12px 22px" onclick="submitForm()">Send my responses →</button>
+      <div class="status" id="status"></div>
+    </div>
+  </div>
 
   <footer>
     FTLM Digital Transformation Feasibility Study · Assessment Questionnaires · v1.0 (Nov 2026)<br>
@@ -135,6 +141,9 @@ footer{color:var(--grey);font-size:12.5px;padding:30px 0 50px;text-align:center}
 </div>
 
 <script>
+/* ===== Response collector endpoint (Google Apps Script web app) ===== */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbzYvcV4gDFJbNOC3Q61LxruqipHqNpmmgZYVzMaoLupfTxLImDP0S0AwpI47VRoXjMc/exec";
+
 const SECTIONS = [
  {n:1,t:"Your processes",c:"navy",obj:"Identify the processes you own or run.",
   q:[
@@ -185,17 +194,19 @@ const SECTIONS = [
  ]}
 ];
 const MAT=[["1","Initial — ad-hoc / manual"],["2","Managed — some consistency"],["3","Defined — documented & standard"],["4","Measured — tracked with data"],["5","Optimising — improving / automated"]];
+
 function qHTML(sec,qi,item){
- const id=sec.n+"_"+qi;
+ const code="Q"+sec.n+"."+(qi+1);
  let inner="";
- if(item.type==="ta") inner=`<textarea></textarea>`;
- else if(item.type==="tx") inner=`<input type="text">`;
- else if(item.type==="ypn") inner=`<div class="opts">${["Yes","Partial","No","Not sure"].map(o=>`<label><input type="radio" name="${id}">${o}</label>`).join("")}</div>`;
- else if(item.type==="opt") inner=`<div class="opts">${item.o.map(o=>`<label><input type="radio" name="${id}">${o}</label>`).join("")}</div>`;
- else if(item.type==="mat") inner=`<div class="mat">${MAT.map(m=>`<label><input type="radio" name="${id}"><b>${m[0]}</b>${m[1]}</label>`).join("")}</div>`;
- else if(item.type==="ev") return `<div class="q"><label class="lab ev">${item.q}</label><input type="text"></div>`;
+ if(item.type==="ta") inner=`<textarea name="${code}"></textarea>`;
+ else if(item.type==="tx") inner=`<input type="text" name="${code}">`;
+ else if(item.type==="ypn") inner=`<div class="opts">${["Yes","Partial","No","Not sure"].map(o=>`<label><input type="radio" name="${code}" value="${o}">${o}</label>`).join("")}</div>`;
+ else if(item.type==="opt") inner=`<div class="opts">${item.o.map(o=>`<label><input type="radio" name="${code}" value="${o}">${o}</label>`).join("")}</div>`;
+ else if(item.type==="mat") inner=`<div class="mat">${MAT.map(m=>`<label><input type="radio" name="${code}" value="${m[0]} ${m[1]}"><b>${m[0]}</b>${m[1]}</label>`).join("")}</div>`;
+ else if(item.type==="ev") return `<div class="q"><label class="lab ev">${item.q}</label><input type="text" name="${code}"></div>`;
  return `<div class="q"><label class="lab"><span class="n">Q${sec.n}.${qi+1}</span>${item.q}</label>${inner}</div>`;
 }
+
 const nav=document.getElementById("nav"), cont=document.getElementById("sections");
 nav.insertAdjacentHTML("beforeend",`<a class="chip" href="#s0">Respondent</a>`);
 SECTIONS.forEach(sec=>{
@@ -208,6 +219,69 @@ SECTIONS.forEach(sec=>{
     <div class="body">${sec.q.map((it,i)=>qHTML(sec,i,it)).join("")}</div>
    </div>`);
 });
+
+/* ===== collect + submit ===== */
+function val(n){const el=document.querySelector('[name="'+n+'"]');return el?el.value.trim():"";}
+function collect(){
+  const meta={
+    name:val('name'), position:val('position'), department:val('department'),
+    processes:val('processes'), email:val('email'), date:val('date')
+  };
+  const answers=[];
+  SECTIONS.forEach(sec=>sec.q.forEach((it,i)=>{
+    const code="Q"+sec.n+"."+(i+1);
+    const els=document.getElementsByName(code);
+    let ans="";
+    if(els.length && els[0].type==="radio"){
+      for(const r of els){ if(r.checked){ ans=r.value; break; } }
+    } else if(els.length){ ans=els[0].value.trim(); }
+    answers.push({code:code, question:it.q, answer:ans});
+  }));
+  return {meta:meta, answers:answers};
+}
+function setStatus(msg,kind){
+  const s=document.getElementById('status');
+  s.textContent=msg;
+  s.style.color = kind==='ok' ? 'var(--green)' : kind==='warn' ? 'var(--gold)' : 'var(--grey)';
+}
+function lockAll(msg){
+  document.querySelectorAll('input,textarea,button').forEach(el=>{el.disabled=true;});
+  setStatus(msg,'ok');
+}
+let submitting=false;
+function submitForm(){
+  if(submitting) return;
+  const data=collect();
+  if(!data.meta.name || !data.meta.department){
+    setStatus('Please enter at least your name and department before sending.','warn');
+    document.getElementById('s0').scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  submitting=true;
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='Sending…';
+  setStatus('Sending your responses…','info');
+  fetch(ENDPOINT,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},
+    body:'payload='+encodeURIComponent(JSON.stringify(data))
+  }).then(()=>{
+    try{localStorage.setItem('ftlm_p3_submitted','1')}catch(e){}
+    lockAll('✓ Thank you — your responses have been sent and cannot be changed. You may now close this page.');
+  }).catch(()=>{
+    submitting=false; btn.disabled=false; btn.textContent='Send my responses →';
+    setStatus('Could not send — please check your internet connection and press Send again.','warn');
+  });
+}
+
+/* If this device already submitted, lock it so answers cannot be changed */
+try{
+  if(localStorage.getItem('ftlm_p3_submitted')==='1'){
+    window.addEventListener('load',()=>lockAll('✓ This device has already sent a response. Sent answers cannot be changed.'));
+  }
+}catch(e){}
+
 function toggleTheme(){const r=document.documentElement;const cur=r.getAttribute("data-theme");
  const next=cur==="dark"?"light":(cur==="light"?"dark":(matchMedia("(prefers-color-scheme: dark)").matches?"light":"dark"));
  r.setAttribute("data-theme",next); try{localStorage.setItem("ftlm_theme",next)}catch(e){} }
